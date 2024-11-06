@@ -6,10 +6,17 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "husky init && echo yarn lint-fix > .husky/pre-commit",
+    "prepare": "husky"
   },
   "dependencies": {
+    "babel-plugin-module-resolver": "^5.0.2",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.31.0",
+    "husky": "^9.1.6",
     "react": "18.3.1",
     "react-native": "0.76.1",
     "react-native-bootsplash": "^6.2.6"
