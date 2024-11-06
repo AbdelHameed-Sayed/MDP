@@ -5,5 +5,11 @@
         <!-- Customize your theme here. -->
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
+   
+    <!-- Boot theme with specific attributes -->
+    <style name="BootTheme" parent="Theme.BootSplash">
+        <item name="android:windowBackground">@drawable/bootsplash_logo</item>
+        <item name="postBootSplashTheme">@style/AppTheme</item>
+    </style>
 
 </resources>
