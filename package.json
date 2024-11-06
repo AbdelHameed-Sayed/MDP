@@ -9,17 +9,25 @@
     "lint-fix": "eslint . --fix",
     "start": "react-native start",
     "test": "jest",
+    "link-fonts": "npx react-native-asset",
     "postinstall": "husky init && echo yarn lint-fix > .husky/pre-commit",
     "prepare": "husky"
   },
   "dependencies": {
+    "@react-navigation/native": "^7.0.0",
+    "@react-navigation/native-stack": "^7.0.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "eslint-import-resolver-typescript": "^3.6.3",
     "eslint-plugin-import": "^2.31.0",
     "husky": "^9.1.6",
     "react": "18.3.1",
     "react-native": "0.76.1",
-    "react-native-bootsplash": "^6.2.6"
+    "react-native-bootsplash": "^6.2.6",
+    "react-native-pager-view": "^6.5.0",
+    "react-native-safe-area-context": "^4.14.0",
+    "react-native-screens": "^4.0.0",
+    "react-native-size-matters": "^0.4.2",
+    "react-native-tab-view": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
