@@ -1,3 +1,16 @@
 export const colors = {
   white: '#FFFFFF',
+  white2: '#FCFCFC',
+  black: '#000000',
+  baseDark: '#212325',
+  baseLight: '#91919F',
+  baseLight60: '#F1F1FA',
+  violet: '#7F3DFF',
+  lightViolet: '#EEE5FF',
+  yellow: '#FCAC12',
+  lightYellow: '#fff6e550',
+  lightYellow2: '#FFF6E5',
+  green: '#00A86B',
+  red: '#ff0011',
+  red100: '#FD3C4A',
 };
