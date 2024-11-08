@@ -10,10 +10,9 @@
       "@molecules/*": ["src/components/molecules/*"],
       "@organisms/*": ["src/components/organisms/*"],
       "@modals/*": ["src/components/modals/*"],
-      "@templates/*": ["src/components/templates/*"],
       "@navigation/*": ["src/navigation/*"],
       "@utils/*": ["src/utils/*"],
-      "@store/*": ["src/store/*"]
+      "@customHooks/*": ["src/customHooks/*"]
     }
   }
 }

@@ -130,3 +130,40 @@ export const filterAndSortTransactions = (
 
   return groupByDate(filteredTransactions, false);
 };
+
+const currentMonthTransactions = (transactions: TUserTransactionsData[]) => {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+
+  return transactions.filter(transaction => {
+    const transactionDate = new Date(transaction.date);
+    return (
+      transactionDate.getFullYear() === currentYear &&
+      transactionDate.getMonth() === currentMonth
+    );
+  });
+};
+
+const currentMonthTotalIncome = (transactions: TUserTransactionsData[]) => {
+  return transactions
+    .filter(transaction => transaction.type === 'Income')
+    .reduce((sum, transaction) => sum + parseFloat(transaction.amount), 0);
+};
+
+const currentMonthTotalExpenses = (transactions: TUserTransactionsData[]) => {
+  return transactions
+    .filter(transaction => transaction.type === 'Expense')
+    .reduce((sum, transaction) => sum + parseFloat(transaction.amount), 0);
+};
+
+export const currentMonthIncomeExpenseTransactions = (
+  transactions: TUserTransactionsData[],
+) => {
+  const currentMonthData = currentMonthTransactions(transactions);
+
+  return {
+    income: currentMonthTotalIncome(currentMonthData),
+    expenses: currentMonthTotalExpenses(currentMonthData),
+  };
+};

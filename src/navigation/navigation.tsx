@@ -5,6 +5,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BootSplash from 'react-native-bootsplash';
 
 import AddIncomeExpenseTransaction from '@screens/addIncomeExpenseTransaction/addIncomeExpenseTransaction';
+import FinancialReport from '@screens/financialReport/financialReport';
+import preFinancialReport from '@screens/preFinancialReport/preFinancialReport';
 import Transactions from '@screens/transactions/transactions';
 import {colors} from '@utils/colors';
 
@@ -33,6 +35,14 @@ const Navigation = () => {
         <Stack.Screen
           name={screenNames.AddIncomeExpenseTransaction}
           component={AddIncomeExpenseTransaction}
+        />
+        <Stack.Screen
+          name={screenNames.PreFinancialReport}
+          component={preFinancialReport}
+        />
+        <Stack.Screen
+          name={screenNames.FinancialReport}
+          component={FinancialReport}
         />
       </Stack.Navigator>
     </NavigationContainer>

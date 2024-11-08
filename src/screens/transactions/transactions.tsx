@@ -1,12 +1,15 @@
-import React, {useEffect, useState, useRef, useMemo} from 'react';
+import React, {useState, useRef, useMemo, useEffect} from 'react';
 import {SectionList, View} from 'react-native';
 
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import {useNavigation} from '@react-navigation/native';
 
 import {DropDownArrow, Filter} from '@assets/index';
 import AppText from '@atoms/appText/appText';
+import useRetrieveUserTransactions from '@customHooks/useRetrieveUserTransactions';
 import AddModal from '@modals/addModal/addModal';
 import AppButton from '@molecules/appButton/appButton';
+import {screenNames} from '@navigation/screenNames';
 import AppBottomSheet from '@organisms/appBottomSheet/appBottomSheet';
 import TransactionComponent from '@organisms/transactionComponent/transactionComponent';
 import TransactionsSortFilter, {
@@ -19,11 +22,7 @@ import {
   isToday,
   isYesterday,
 } from '@utils/helper';
-import {retrieveUserTransactionsData} from '@utils/secureStorage';
-import {
-  TUserTransactionsData,
-  TUserTransactionsDataAsSection,
-} from '@utils/types';
+import {TUseNavigation, TUserTransactionsDataAsSection} from '@utils/types';
 
 import styles from './transactions.style';
 
@@ -33,26 +32,22 @@ const ListEmptyComponent = () => {
   );
 };
 const Transactions = () => {
+  const navigation = useNavigation<TUseNavigation>();
+
+  const {transactionsFromStorage} = useRetrieveUserTransactions();
+
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [transactionsFromStorage, setTransactionsFromStorage] = useState<
-    TUserTransactionsData[]
-  >([]);
   const [transactions, setTransactions] = useState<
     TUserTransactionsDataAsSection[]
   >([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
   const [pressedButtons, setPressedButtons] = useState(defaultPressedButtons);
 
   useEffect(() => {
-    retrieveUserTransactionsData().then(trs => {
-      if (trs) {
-        setTransactionsFromStorage(trs);
-        setTransactions(groupByDate(trs));
-      }
-    });
-  }, []);
+    setTransactions(groupByDate(transactionsFromStorage));
+  }, [transactionsFromStorage]);
 
   const showAppliedFilterIndicator = useMemo(
     () =>
@@ -84,7 +79,9 @@ const Transactions = () => {
             style={styles.seeFinancial}
             titleStyle={styles.seeFinancialTitle}
             title={'See your financial report'}
-            onPress={() => {}}>
+            onPress={() => {
+              navigation.navigate(screenNames.PreFinancialReport);
+            }}>
             <DropDownArrow
               style={styles.seeFinancialArrow}
               stroke={colors.violet}
