@@ -31,7 +31,7 @@ export interface IAppDropDownProps extends IListEmptyProps {
   placeholderStyle?: TextStyle;
   arrowIcon?: React.JSX.Element;
   // eslint-disable-next-line no-unused-vars
-  onChangeValue?: (value: TLabelValueObject | null) => void;
+  onChangeValue?: (value: TLabelValueObject) => void;
   // eslint-disable-next-line no-unused-vars
   getCurrentValue?: (value: TLabelValueObject | null) => void;
   arrowColor?: string;

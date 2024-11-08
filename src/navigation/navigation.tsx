@@ -3,9 +3,9 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BootSplash from 'react-native-bootsplash';
-import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
 
-import Home from '@screens/home';
+import AddIncomeExpenseTransaction from '@screens/addIncomeExpenseTransaction/addIncomeExpenseTransaction';
+import Transactions from '@screens/transactions/transactions';
 import {colors} from '@utils/colors';
 
 import {screenNames} from './screenNames';
@@ -19,16 +19,21 @@ const Navigation = () => {
         BootSplash.hide({fade: true});
       }}>
       <Stack.Navigator
-        initialRouteName={screenNames.Home}
+        initialRouteName={screenNames.Transactions}
         screenOptions={{
           headerShown: false,
           contentStyle: {
             backgroundColor: colors.white,
-            paddingHorizontal: moderateScale(20),
-            paddingBottom: moderateVerticalScale(20),
           },
         }}>
-        <Stack.Screen name={screenNames.Home} component={Home} />
+        <Stack.Screen
+          name={screenNames.Transactions}
+          component={Transactions}
+        />
+        <Stack.Screen
+          name={screenNames.AddIncomeExpenseTransaction}
+          component={AddIncomeExpenseTransaction}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

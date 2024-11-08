@@ -1,5 +1,6 @@
 import React, {FC, forwardRef, ReactNode} from 'react';
 import {
+  GestureResponderEvent,
   Pressable,
   PressableProps,
   StyleProp,
@@ -14,7 +15,8 @@ import AppText from '@atoms/appText/appText';
 import {colors} from '@utils/colors';
 
 export interface IAppButtonProps extends PressableProps {
-  onPress: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onPress: (event: GestureResponderEvent) => void | null | undefined;
   title?: string;
   style?: StyleProp<PressableProps & TextStyle>;
   titleStyle?: StyleProp<PressableProps & TextStyle>;

@@ -1,3 +1,4 @@
 export const screenNames = {
-  Home: 'Home',
+  Transactions: 'Transactions',
+  AddIncomeExpenseTransaction: 'AddIncomeExpenseTransaction',
 };
