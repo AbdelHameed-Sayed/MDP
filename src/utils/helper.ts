@@ -1,7 +1,12 @@
 import {Dimensions, Platform} from 'react-native';
 
+import {categoryRenderer} from './categories';
 import {
+  TCategoryText,
+  TFinancialReportFilteredTransactions,
+  TPeriods,
   TPressedButtonActions,
+  TTransaction,
   TUserTransactionsData,
   TUserTransactionsDataAsSection,
 } from './types';
@@ -166,4 +171,91 @@ export const currentMonthIncomeExpenseTransactions = (
     income: currentMonthTotalIncome(currentMonthData),
     expenses: currentMonthTotalExpenses(currentMonthData),
   };
+};
+
+export const financialReportFilteredTransactions = (
+  transactions: TUserTransactionsData[],
+  type: TTransaction,
+  period: TPeriods,
+) => {
+  const currentDate = new Date();
+
+  let filteredTransactions = transactions.filter(
+    transaction => transaction.type === type,
+  );
+
+  filteredTransactions = filteredTransactions.filter(transaction => {
+    const transactionDate = new Date(transaction.date);
+
+    if (period === 'Today') {
+      return (
+        transactionDate.getDate() === currentDate.getDate() &&
+        transactionDate.getMonth() === currentDate.getMonth() &&
+        transactionDate.getFullYear() === currentDate.getFullYear()
+      );
+    }
+
+    if (period === 'Month') {
+      return (
+        transactionDate.getMonth() === currentDate.getMonth() &&
+        transactionDate.getFullYear() === currentDate.getFullYear()
+      );
+    }
+
+    return false;
+  });
+
+  const categoryTotals: {
+    [key: string]: {
+      amount: number;
+      currency: string;
+      type: TTransaction;
+      label: string;
+    };
+  } = {};
+
+  filteredTransactions.forEach(transaction => {
+    const {value, label} = transaction.category;
+    const amount = parseFloat(transaction.amount);
+    const currency = transaction.currency;
+    const transactionType = transaction.type;
+
+    if (categoryTotals[value]) {
+      categoryTotals[value].amount += amount;
+    } else {
+      categoryTotals[value] = {
+        amount,
+        currency,
+        type: transactionType,
+        label,
+      };
+    }
+  });
+
+  const aggregatedResults = Object.entries(categoryTotals).map(
+    ([value, {amount, currency, type: transactionType, label}]) => ({
+      category: {label, value},
+      amount,
+      currency,
+      type: transactionType,
+    }),
+  );
+
+  return aggregatedResults;
+};
+
+export const pieChartDataHandler = (
+  transactions: TFinancialReportFilteredTransactions[],
+) => {
+  const CategorizedData = transactions.map(item => {
+    const categoryData = categoryRenderer(item.category.value as TCategoryText);
+
+    return {
+      label: categoryData.label,
+      value: Number(item.amount),
+      color: categoryData.colorCode,
+    };
+  });
+
+  return CategorizedData;
 };

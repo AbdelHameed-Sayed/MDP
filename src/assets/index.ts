@@ -12,3 +12,4 @@ export {default as Shopping} from './svgs/shopping.svg';
 export {default as Subscription} from './svgs/subscription.svg';
 export {default as Transportation} from './svgs/transportation.svg';
 export {default as Filter} from './svgs/filter.svg';
+export {default as PieChart} from './svgs/pieChart.svg';

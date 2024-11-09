@@ -8,7 +8,7 @@ interface ITransaction {
   Expense: 'Expense';
 }
 
-type TTransaction = ITransaction['Income'] | ITransaction['Expense'];
+export type TTransaction = ITransaction['Income'] | ITransaction['Expense'];
 
 export interface IScreenParams extends ParamListBase {
   IncomeExpenseParams: {
@@ -59,4 +59,13 @@ export type TPressedButtonActions = {
     income: boolean;
     expense: boolean;
   };
+};
+
+export type TPeriods = 'Today' | 'Week' | 'Month';
+
+export type TFinancialReportFilteredTransactions = {
+  category: TLabelValueObject;
+  amount: number;
+  currency: string;
+  type: TTransaction;
 };

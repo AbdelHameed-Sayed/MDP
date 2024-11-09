@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
   },
   buttonContainerExtreme: {
     paddingVertical: moderateVerticalScale(8),
-    paddingRight: moderateScale(8),
-    paddingLeft: moderateScale(16),
+    paddingLeft: moderateScale(8),
+    paddingRight: moderateScale(16),
     flexDirection: 'row-reverse',
     borderRadius: moderateScale(40),
   },
