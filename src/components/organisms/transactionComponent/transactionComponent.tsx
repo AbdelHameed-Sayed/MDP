@@ -1,25 +1,38 @@
 import React, {FC} from 'react';
 import {View, StyleSheet} from 'react-native';
 
+import {useNavigation} from '@react-navigation/native';
 import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
 
 import AppText from '@atoms/appText/appText';
 import AppButton from '@molecules/appButton/appButton';
+import {screenNames} from '@navigation/screenNames';
 import {categoryRenderer} from '@utils/categories';
 import {colors} from '@utils/colors';
-import {TCategoryText, TUserTransactionsData} from '@utils/types';
+import {
+  TCategoryText,
+  TUseNavigation,
+  TUserTransactionsData,
+} from '@utils/types';
 
 interface IProps {
   fullItemDetails: TUserTransactionsData;
 }
 
 const TransactionComponent: FC<IProps> = ({fullItemDetails}) => {
+  const navigation = useNavigation<TUseNavigation>();
+
   const {icon, categoryText} = categoryRenderer(
     fullItemDetails.category.value as TCategoryText,
   );
 
   return (
-    <AppButton inlineNoUnderLine onPress={() => {}} style={styles.container}>
+    <AppButton
+      inlineNoUnderLine
+      onPress={() => {
+        navigation.navigate(screenNames.TransactionDetails, {fullItemDetails});
+      }}
+      style={styles.container}>
       {icon}
       <View style={styles.textContainer}>
         <View>

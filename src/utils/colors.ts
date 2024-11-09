@@ -4,6 +4,7 @@ export const colors = {
   white24: '#FFFFFF3D',
   lightGray: '#E3E5E5',
   lightGray2: '#E3E5E5',
+  lightGray3: '#E3E5E5',
   backdrop: 'rgba(0,0,0,0.5)',
   backdrop2: 'rgba(13, 14, 15, 0.16)',
   black: '#000000',

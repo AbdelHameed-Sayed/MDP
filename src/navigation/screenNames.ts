@@ -3,4 +3,5 @@ export const screenNames = {
   AddIncomeExpenseTransaction: 'AddIncomeExpenseTransaction',
   PreFinancialReport: 'PreFinancialReport',
   FinancialReport: 'FinancialReport',
+  TransactionDetails: 'TransactionDetails',
 };

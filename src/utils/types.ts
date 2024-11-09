@@ -15,6 +15,10 @@ export interface IScreenParams extends ParamListBase {
     name: TTransaction;
     backgroundColor: string;
   };
+
+  TransactionDetailsParams: {
+    fullItemDetails: TUserTransactionsData;
+  };
 }
 
 export type TCategoryText =
